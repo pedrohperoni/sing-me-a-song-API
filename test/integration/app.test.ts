@@ -102,13 +102,13 @@ describe("INTEGRATION TESTING", () => {
     beforeAll(truncateRecommendations);
     afterAll(disconnect);
     it("should return the top(amount) recommendations sorted by score (descending)", async () => {
-      const highRecommendation = await createRecommendationWithCustomScore(100);
-      const lowRecommendation = await createRecommendationWithCustomScore(2);
-      const midRecommendation = await createRecommendationWithCustomScore(50);
+      const firstRecommendation = await createRecommendationWithCustomScore(100);
+      const lastRecommendation = await createRecommendationWithCustomScore(2);
+      const secondRecommendation = await createRecommendationWithCustomScore(50);
       const response = await supertest(app).get("/recommendations/top/3");
-      expect(response.body[0]).toEqual(highRecommendation);
-      expect(response.body[1]).toEqual(midRecommendation);
-      expect(response.body[2]).toEqual(lowRecommendation);
+      expect(response.body[0]).toEqual(firstRecommendation);
+      expect(response.body[1]).toEqual(secondRecommendation);
+      expect(response.body[2]).toEqual(lastRecommendation);
     });
   });
 
