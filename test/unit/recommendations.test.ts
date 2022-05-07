@@ -26,5 +26,10 @@ describe("UNIT TESTING", () => {
         type: "conflict",
       });
     });
+
+    it.todo("services: upvote/downvote - getByIdOrFail");
+    it.todo("services: downvote - updatedRecommendation -  repositoty: remove ")
+    it.todo("services: getRandom - getByScore");
+    it.todo("services: getScoreFilter - gt x lte");
   });
 });
