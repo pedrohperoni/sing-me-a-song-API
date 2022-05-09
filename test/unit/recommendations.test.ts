@@ -73,8 +73,8 @@ describe("UNIT TESTING", () => {
         .mockResolvedValue(null);
 
       await recommendationService.downvote(recommendation.id);
-      expect(updatedScore).toBeCalled();
-      expect(remove).toBeCalled();
+      expect(updatedScore).toHaveBeenCalledTimes(1);
+      expect(remove).toHaveBeenCalledTimes(1);
     });
   });
 
@@ -100,21 +100,21 @@ describe("UNIT TESTING", () => {
       const randomNumber = 1;
       jest.spyOn(global.Math, "random").mockReturnValueOnce(randomNumber);
       const getScoreFilter = recommendationService.getScoreFilter(randomNumber);
-      expect(getScoreFilter).toEqual("lte");
+      expect(getScoreFilter).toBe("lte");
     });
 
     it("getScoreFilter -> should return gt when a score is lower than 0.7", () => {
       const randomNumber = 0.1;
       jest.spyOn(global.Math, "random").mockReturnValueOnce(randomNumber);
       const getScoreFilter = recommendationService.getScoreFilter(randomNumber);
-      expect(getScoreFilter).toEqual("gt");
+      expect(getScoreFilter).toBe("gt");
     });
 
     it("getByScore -> should return recommendations if recommendations.length is greater than 0", async () => {
       const mockRecommendation = await createMockRecommendation(0);
       jest
         .spyOn(recommendationRepository, "findAll")
-        .mockResolvedValueOnce([mockRecommendation]);
+        .mockResolvedValue([mockRecommendation]);
       const getByScore = await recommendationService.getByScore("lte");
       expect(getByScore).toEqual([mockRecommendation]);
     });
