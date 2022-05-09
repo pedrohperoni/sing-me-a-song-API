@@ -4,12 +4,12 @@ import { Recommendation } from "@prisma/client";
 type RecommendationBody = Omit<Recommendation, "id" | "score">;
 type RecommendationDB = Omit<Recommendation, "id">;
 
-export async function createMockRecommendation() {
+export async function createMockRecommendation(score: number) {
   const recommendation = {
     id: 1,
     name: "Recommendation Title",
     youtubeLink: "https://www.youtube.com/watch?v=jNQXAC9IVRw",
-    score: 10,
+    score: score,
   };
   return recommendation;
 }

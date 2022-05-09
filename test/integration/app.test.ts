@@ -5,10 +5,11 @@ import {
   createRecommendationBody,
   createRecommendation,
   createRecommendationWithCustomScore,
-} from "../factories/RecommentationFactory.js";
+} from "../factories/RecommendationFactory.js";
 
 describe("INTEGRATION TESTING", () => {
   beforeAll(truncateRecommendations);
+  afterAll(truncateRecommendations);
   afterAll(disconnect);
 
   // --------------------------- INSERT RECOMMENDATION---------------------------
